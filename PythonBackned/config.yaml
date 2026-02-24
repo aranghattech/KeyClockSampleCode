@@ -1,0 +1,7 @@
+keycloak:
+  server_url: "http://localhost:8080"
+  realm: "myrealm"
+  client_id: "my-angular-app"
+  # client_secret is only needed for introspection validation
+  # client_secret: ""
+  # audience: ""
