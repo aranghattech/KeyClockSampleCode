@@ -1,16 +1,12 @@
 ```
-const getDynamicRealm = (): string => {
-  if (typeof window !== 'undefined') {
-    const urlParams = new URLSearchParams(window.location.search);
-    // Checking for both 'realm' and your 'relm' spelling
-    const realm = urlParams.get('realm') || urlParams.get('relm');
-    
-    if (!realm) {
-      console.warn('No realm provided in URL. Defaulting to master.');
-    }
-    
-    return realm || 'master'; 
-  }
-  return 'master'; // Fallback for SSR builds
-};
+// This regex matches any URL that does NOT start with http:// or https://
+const relativeUrlCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
+  urlPattern: /^(?!(http:\/\/|https:\/\/)).*$/i 
+});
+
+// Inside your appConfig providers:
+{
+  provide: INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
+  useValue: [relativeUrlCondition]
+}
 ```
