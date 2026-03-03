@@ -1,3 +1,4 @@
+```
 const getDynamicRealm = (): string => {
   if (typeof window !== 'undefined') {
     const urlParams = new URLSearchParams(window.location.search);
@@ -12,3 +13,4 @@ const getDynamicRealm = (): string => {
   }
   return 'master'; // Fallback for SSR builds
 };
+```
